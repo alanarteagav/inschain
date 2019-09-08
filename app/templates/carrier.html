@@ -11,7 +11,7 @@
 	</div>
 
 	<a href="{{node_address}}/mine" target="_blank"><button>Recabar información</button></a>
-	<a href="/carrier"><button class="button-primary">Actualizar</button></a>
+	<a href="/carrier" onclick="fetch_posts()"><button class="button-primary">Actualizar</button></a>
 
 
 	<div style="margin: 20px;">
@@ -29,7 +29,7 @@
 	      <div class="post_box-body">
 	         <p>Tratamiento: {{post.content}}</p>
 	         <p>Cédula: {{post.cedula}}</p>
-	         <p>Número Único de Aseguro: {{post.nua}}</p>
+	         <p>Número de seguro: {{post.nua}}</p>
 	      </div>
 	   </div>
 	</div>

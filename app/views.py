@@ -12,6 +12,9 @@ CONNECTED_NODE_ADDRESS = "http://127.0.0.1:8000"
 
 posts = []
 
+def get_key():
+    asg = request.form.get('asg')
+    print(asg)
 
 def fetch_posts():
     """
@@ -27,15 +30,15 @@ def fetch_posts():
             for tx in block["transactions"]:
                 tx["index"] = block["index"]
                 tx["hash"] = block["previous_hash"]
+                print(tx['asg'])
                 content.append(tx)
-                print(tx)
         global posts
         posts = sorted(content, key=lambda k: k['timestamp'],
                        reverse=True)
 
+
 @app.route('/index')
 def index():
-    fetch_posts()
     return render_template('index.html',
                            title='Sistema '
                                  'de registro de aseguros',
@@ -45,15 +48,24 @@ def index():
 
 @app.route('/medical')
 def medical():
-    fetch_posts()
     return render_template('medical.html',
                         title='Sistema de Aseguro | Centro Médico ',
                         posts=posts,
                         node_address=CONNECTED_NODE_ADDRESS,
                         readable_time=timestamp_to_string)
 
+@app.route('/select')
+def select():
+    return render_template('select.html',
+                        title='Selección de aseguradora',
+                        posts=posts,
+                        node_address=CONNECTED_NODE_ADDRESS,
+                        readable_time=timestamp_to_string)
+
 @app.route('/carrier')
 def carrier():
+    asg = request.form.get('asg')
+    print(asg)
     fetch_posts()
     return render_template('carrier.html',
                         title='Sistema de Aseguro | Compañía Aseguradora ',
@@ -72,6 +84,7 @@ def submit_textarea():
     cedula = request.form["cedula"]
     nua = request.form["nua"]
     centro = request.form["centro"]
+    curp = request.form["curp"]
     asg = request.form.get('asg')
 
     post_object = {
@@ -81,6 +94,7 @@ def submit_textarea():
         'nua' : nua,
         'centro' : centro,
         'asg' : asg,
+        'curp' : curp,
     }
 
     # Submit a transaction
