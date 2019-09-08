@@ -34,7 +34,7 @@ def fetch_posts():
                        reverse=True)
 
 
-@app.route('/')
+@app.route('/index')
 def index():
     fetch_posts()
     return render_template('index.html',
@@ -43,6 +43,24 @@ def index():
                            posts=posts,
                            node_address=CONNECTED_NODE_ADDRESS,
                            readable_time=timestamp_to_string)
+
+@app.route('/medical')
+def medical():
+    fetch_posts()
+    return render_template('medical.html',
+                        title='Sistema de Aseguro | Centro Médico ',
+                        posts=posts,
+                        node_address=CONNECTED_NODE_ADDRESS,
+                        readable_time=timestamp_to_string)
+
+@app.route('/carrier')
+def carrier():
+    fetch_posts()
+    return render_template('carrier.html',
+                        title='Sistema de Aseguro | Compañía Aseguradora ',
+                        posts=posts,
+                        node_address=CONNECTED_NODE_ADDRESS,
+                        readable_time=timestamp_to_string)
 
 
 @app.route('/submit', methods=['POST'])
@@ -71,7 +89,7 @@ def submit_textarea():
                   json=post_object,
                   headers={'Content-type': 'application/json'})
 
-    return redirect('/')
+    return redirect('/medical')
 
 
 def timestamp_to_string(epoch_time):
