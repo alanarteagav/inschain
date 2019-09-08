@@ -28,11 +28,10 @@ def fetch_posts():
                 tx["index"] = block["index"]
                 tx["hash"] = block["previous_hash"]
                 content.append(tx)
-
+                print(tx)
         global posts
         posts = sorted(content, key=lambda k: k['timestamp'],
                        reverse=True)
-
 
 @app.route('/index')
 def index():
@@ -73,6 +72,7 @@ def submit_textarea():
     cedula = request.form["cedula"]
     nua = request.form["nua"]
     centro = request.form["centro"]
+    asg = request.form.get('asg')
 
     post_object = {
         'author': author,
@@ -80,6 +80,7 @@ def submit_textarea():
         'cedula': cedula,
         'nua' : nua,
         'centro' : centro,
+        'asg' : asg,
     }
 
     # Submit a transaction

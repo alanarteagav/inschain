@@ -5,7 +5,21 @@
 
 	<center>
 	<form action="/submit" id="textform" method="post">
-	    <input class="input_centro" type="text" name="centro" placeholder="Centro Médico">
+		<div class="row">
+			<div class="five columns">
+				<h5>Centro Médico</h5>
+				<input class="input_centro" type="text"
+					    name="centro" placeholder="Centro Médico">
+			</div>
+			<div class="six columns">
+				<h5>Aseguradora</h5>
+				<select class="u-full-width" id="exampleRecipientInput", name="asg">
+					<option value="AS1">Aseguradora 1</option>
+					<option value="AS2">Aseguradora 2</option>
+					<option value="AS3">Aseguradora 3</option>
+				</select>
+			</div>
+		</div>
 		<br>
 		<div class="row">
 			<div class="four columns">
@@ -19,7 +33,7 @@
 		</div>
 		<div class="row">
 			<div class="four columns">
-				<label>Número Único de Aseguro</label>
+				<label>Número de seguro</label>
 				<input class="u-full-width" type="text" name="nua" placeholder="NUA">
 			</div>
 			<div class="eight columns">

@@ -188,6 +188,7 @@ def mine_unconfirmed_transactions():
         return render_template('result_failure.html')
     return render_template('result_success.html',block=result)
 
+
 # endpoint to add new peers to the network.
 @app.route('/register_node', methods=['POST'])
 def register_new_peers():
