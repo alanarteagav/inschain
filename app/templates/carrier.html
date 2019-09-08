@@ -3,13 +3,6 @@
 
 {% block content %}
 
-	<div class="row">
-		<div class="four columns">
-			<label>Clave Aseguradora</label>
-			<input class="u-full-width" type="text" name="key" placeholder="Clave">
-		</div>
-	</div>
-
 	<a href="{{node_address}}/mine" target="_blank"><button>Recabar información</button></a>
 	<a href="/carrier" onclick="fetch_posts()"><button class="button-primary">Actualizar</button></a>
 
@@ -30,6 +23,7 @@
 	         <p>Tratamiento: {{post.content}}</p>
 	         <p>Cédula: {{post.cedula}}</p>
 	         <p>Número de seguro: {{post.nua}}</p>
+	         <p>Aseguradora actual: {{post.asg}}</p>
 	      </div>
 	   </div>
 	</div>
