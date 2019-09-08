@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" />
+  </head>
+  <body>
+    <div><a href="/index">Home</a></div>
+    <center><h2>{{ title }}</h2></center>
+    <hr>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+    {% for message in messages %}
+        <li>{{ message }} </li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </body>
+  <style media="screen">
+      .h1 {
+          color: blue;
+      }
+  </style>
+</html>
