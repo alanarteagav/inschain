@@ -2,7 +2,7 @@ from hashlib import sha256
 import json
 import time
 
-from flask import Flask, request
+from flask import Flask, request, render_template
 import requests
 
 
@@ -150,11 +150,11 @@ peers = set()
 @app.route('/new_transaction', methods=['POST'])
 def new_transaction():
     tx_data = request.get_json()
-    required_fields = ["author", "content"]
+    required_fields = ["author", "content", "cedula", "nua", "centro"]
 
     for field in required_fields:
         if not tx_data.get(field):
-            return "Invlaid transaction data", 404
+            return "Invalid transaction data", 404
 
     tx_data["timestamp"] = time.time()
 
@@ -185,9 +185,8 @@ def get_chain():
 def mine_unconfirmed_transactions():
     result = blockchain.mine()
     if not result:
-        return "No transactions to mine"
-    return "Block #{} is mined.".format(result)
-
+        return render_template('result_failure.html')
+    return render_template('result_success.html',block=result)
 
 # endpoint to add new peers to the network.
 @app.route('/register_node', methods=['POST'])

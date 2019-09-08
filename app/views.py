@@ -38,7 +38,7 @@ def fetch_posts():
 def index():
     fetch_posts()
     return render_template('index.html',
-                           title='Insurance Company: Sistema '
+                           title='Sistema '
                                  'de registro de aseguros',
                            posts=posts,
                            node_address=CONNECTED_NODE_ADDRESS,
@@ -52,10 +52,16 @@ def submit_textarea():
     """
     post_content = request.form["content"]
     author = request.form["author"]
+    cedula = request.form["cedula"]
+    nua = request.form["nua"]
+    centro = request.form["centro"]
 
     post_object = {
         'author': author,
         'content': post_content,
+        'cedula': cedula,
+        'nua' : nua,
+        'centro' : centro,
     }
 
     # Submit a transaction

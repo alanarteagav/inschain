@@ -2,38 +2,57 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<br>
 
 	<center>
 	<form action="/submit" id="textform" method="post">
-	    <input type="text" name="cedula" placeholder="Cédula">
-	    <input type="text" name="key" placeholder="Número Único de aseguro">
-	    <input type="text" name="author" placeholder="Doctor">
+	    <input class="input_centro" type="text" name="centro" placeholder="Centro Médico">
 		<br>
-		<textarea name="content" rows="4" cols="50" placeholder="Entrar información del tratamiento..."></textarea>
-		<br>
-	    <input type="submit" value="Enviar">
+		<div class="row">
+			<div class="four columns">
+				<label>Número de Cédula</label>
+				<input class="u-full-width" type="text" name="cedula" placeholder="Cédula">
+			</div>
+			<div class="eight columns">
+				<label>Nombre del Médico</label>
+				<input class="u-full-width" type="text" name="author" placeholder="Doctor">
+			</div>
+		</div>
+		<div class="row">
+			<div class="four columns">
+				<label>Número Único de Aseguro</label>
+				<input class="u-full-width" type="text" name="nua" placeholder="NUA">
+			</div>
+			<div class="eight columns">
+				<label>Información del tratamiento</label>
+				<textarea class="u-full-width" name="content" rows="4" cols="50" placeholder="Entrar información del tratamiento..."></textarea>
+			</div>
+		</div>
+
+			<input class="button-primary" type="submit" type="submit" value="Enviar">
+
 	</form>
 	</center>
 
 	<br>
 
-	<a href="{{node_address}}/mine" target="_blank"><button>Solicitar alta</button></a>
-	<a href="/"><button>Actualizar</button></a>
+	<a href="{{node_address}}/mine" target="_blank"><button>Recabar información</button></a>
+	<a href="/"><button class="button-primary">Actualizar</button></a>
 
 	<div style="margin: 20px;">
 
     {% for post in posts %}
     <div class="post_box">
 	   <div class="post_box-header">
-	      <div class="post_box-options"><button class="option-btn">Reply</button></div>
-	      <div style="background: rgb(0, 97, 146) none repeat scroll 0% 0%; box-shadow: rgb(0, 97, 146) 0px 0px 0px 2px;" class="post_box-avatar">{{post.author[0]}}</div>
-	      <div class="name-header">{{post.author}}</div>
-	      <div class="post_box-subtitle"> Alta en: <i>{{readable_time(post.timestamp)}}</i></div>
+	      <div class="post_box-options"><button >Responder</button></div>
+	      <div style="background: rgb(0, 56, 146) none repeat scroll 0% 0%; box-shadow: rgb(0, 97, 146) 0px 0px 0px 2px;" class="post_box-avatar">{{post.author[0:2]}}</div>
+	      <div class="name-header">{{post.author}} : {{post.centro}}</div>
+	      <div class="post_box-subtitle"> Enviado durante: <i>{{readable_time(post.timestamp)}}</i></div>
 	   </div>
 	   <div>
 	      <div class="post_box-body">
-	         <p>{{post.content}}</p>
+	         <p>Tratamiento: {{post.content}}</p>
+	         <p>Cédula: {{post.cedula}}</p>
+	         <p>Número Único de Aseguro: {{post.nua}}</p>
 	      </div>
 	   </div>
 	</div>
@@ -81,15 +100,12 @@
 		}
 
 		.post_box-body {
-		    margin-top: 16px;
-		    margin-bottom: 8px;
+		    margin-top: 5px;
+		    margin-bottom: 5px;
 		}
 
 		.post_box-options {
 		    float: right;
-		}
-		.h1 {
-		    color: blue;
 		}
 		.option-btn {
 		    background: #f8f8f8;
@@ -102,6 +118,9 @@
 		    margin-right: 2px;
 		    outline: none;
 		    height: 42px;
+		}
+		.input_centro{
+			font-size: 20px;
 		}
 	</style>
     </div>
